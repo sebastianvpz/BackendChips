@@ -37,7 +37,7 @@ public class Cita {
     private String motivo;
 
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
 
     @OneToMany(mappedBy = "cita", cascade = CascadeType.ALL)
     @JsonIgnore

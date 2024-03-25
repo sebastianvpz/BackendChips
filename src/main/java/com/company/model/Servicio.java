@@ -22,6 +22,8 @@ public class Servicio {
 
     private String titulo;
     private String descripcion;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
 
     @OneToMany(mappedBy = "servicio", cascade = CascadeType.ALL)

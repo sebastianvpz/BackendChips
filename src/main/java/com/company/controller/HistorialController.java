@@ -4,6 +4,7 @@ import com.company.model.Historial;
 import com.company.service.HistorialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -29,13 +30,13 @@ public class HistorialController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Historial> createHistorial(@RequestBody Historial historial) {
         Historial createdHistorial = historialService.createHistorial(historial);
         return new ResponseEntity<>(createdHistorial, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/editar/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Historial> updateHistorial(@PathVariable("id") Long id, @RequestBody Historial historial) {
         Historial updatedHistorial = historialService.updateHistorial(id, historial);
         if (updatedHistorial != null) {
@@ -45,7 +46,7 @@ public class HistorialController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> deleteHistorial(@PathVariable("id") Long id) {
         historialService.deleteHistorial(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -23,12 +23,13 @@ public class Medico {
     private String nombre;
 
     @Temporal(TemporalType.TIME)
-    private Date horario;
+    private String horario;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
 
     @Temporal(TemporalType.DATE)
-    private Date fecha_nacimiento;
+    private String fecha_nacimiento;
 
     @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL)
     @JsonIgnore

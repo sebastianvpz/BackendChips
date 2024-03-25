@@ -21,16 +21,8 @@ public class MascotaService {
         return mascotaRepository.findById(id);
     }
 
-    public Mascota createMascota(Mascota mascota) {
-        return mascotaRepository.save(mascota);
-    }
-
-    public Mascota updateMascota(Long id, Mascota mascota) {
-        if (mascotaRepository.existsById(id)) {
-            mascota.setIdmascota(id);
-            return mascotaRepository.save(mascota);
-        }
-        return null;
+    public void createMascota(Mascota mascota) {
+        mascotaRepository.save(mascota);
     }
 
     public void deleteMascota(Long id) {

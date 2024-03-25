@@ -23,6 +23,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
     private String username;
     private String password;

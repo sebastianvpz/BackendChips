@@ -28,8 +28,10 @@ public class Mascota {
     private Especie especie;
 
     private String nombre;
-    private String sexo;
+    private Boolean sexo;
     private int edad;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String img;
 }
 

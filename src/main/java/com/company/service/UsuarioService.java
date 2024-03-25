@@ -21,9 +21,7 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
-    public Usuario createUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
+    public void createUsuario(Usuario usuario) {usuarioRepository.save(usuario);}
 
     public Usuario updateUsuario(Long id, Usuario usuario) {
         if (usuarioRepository.existsById(id)) {

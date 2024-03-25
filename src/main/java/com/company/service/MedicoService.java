@@ -21,8 +21,8 @@ public class MedicoService {
         return medicoRepository.findById(id);
     }
 
-    public Medico createMedico(Medico medico) {
-        return medicoRepository.save(medico);
+    public void createMedico(Medico medico) {
+        medicoRepository.save(medico);
     }
 
     public Medico updateMedico(Long id, Medico medico) {

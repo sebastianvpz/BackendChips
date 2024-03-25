@@ -21,8 +21,7 @@ public class ServicioService {
         return servicioRepository.findById(id);
     }
 
-    public Servicio createServicio(Servicio servicio) {
-        return servicioRepository.save(servicio);
+    public void createServicio(Servicio servicio) { servicioRepository.save(servicio);
     }
 
     public Servicio updateServicio(Long id, Servicio servicio) {
