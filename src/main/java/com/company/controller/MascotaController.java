@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/mascotas")
+@CrossOrigin("*")
 public class MascotaController {
 
     @Autowired

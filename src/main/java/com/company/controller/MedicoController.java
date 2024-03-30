@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/medicos")
+@CrossOrigin("*")
 public class MedicoController {
 
     @Autowired

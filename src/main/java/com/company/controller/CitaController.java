@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/citas")
+@CrossOrigin("*")
 public class CitaController {
 
     @Autowired

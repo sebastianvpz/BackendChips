@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/historiales")
+@CrossOrigin("*")
 public class HistorialController {
 
     @Autowired
