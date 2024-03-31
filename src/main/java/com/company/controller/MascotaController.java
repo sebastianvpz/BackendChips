@@ -41,6 +41,18 @@ public class MascotaController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/listar/{idUsuario}")
+    public ResponseEntity<List<Mascota>> getMascotasByUsuarioId(@PathVariable("idUsuario") Long idUsuario) {
+        Optional<Usuario> usuarioOptional = usuarioService.getUsuarioById(idUsuario);
+        if (usuarioOptional.isPresent()) {
+            List<Mascota> mascotas = usuarioOptional.get().getMascotas();
+            return new ResponseEntity<>(mascotas, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createMascota(@RequestParam("img") String imgString64,
                                                  @RequestParam("nombre") String nombre,

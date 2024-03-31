@@ -36,5 +36,9 @@ public class CitaService {
     public void deleteCita(Long id) {
         citaRepository.deleteById(id);
     }
+
+    public List<Cita> getCitasByUsuarioId(Long usuarioId) {
+        return citaRepository.findByUsuarioId(usuarioId);
+    }
 }
 

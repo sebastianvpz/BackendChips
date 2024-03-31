@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,9 @@ public class UsuarioController {
 
     @Autowired
     private RolService rolService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> getAllUsuarios() {
@@ -53,7 +57,8 @@ public class UsuarioController {
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         usuario.setUsername(username);
-        usuario.setPassword(password);
+        //Agregado codificacion
+        usuario.setPassword(passwordEncoder.encode(password));
         usuario.setRol(rol);
         usuarioService.createUsuario(usuario);
             return ResponseEntity.ok().body("{\"message\": \"Mascota guardada exitosamente\"}");

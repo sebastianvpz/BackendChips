@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.model.Historial;
 import com.company.service.HistorialService;
+import com.company.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +19,9 @@ public class HistorialController {
     @Autowired
     private HistorialService historialService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping
     public ResponseEntity<List<Historial>> getAllHistoriales() {
         List<Historial> historiales = historialService.getAllHistoriales();
@@ -29,6 +33,17 @@ public class HistorialController {
         Optional<Historial> historial = historialService.getHistorialById(id);
         return historial.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/listar/{idUsuario}")
+    public ResponseEntity<List<Historial>> getHistorialesByUsuarioId(@PathVariable("idUsuario") Long idUsuario) {
+        Optional<Usuario> usuarioOptional = usuarioService.getUsuarioById(idUsuario);
+        if (usuarioOptional.isPresent()) {
+            List<Historial> historiales = historialService.getHistorialesByUsuarioId(idUsuario);
+            return new ResponseEntity<>(historiales, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
