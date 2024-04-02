@@ -31,7 +31,7 @@ public class EspecieController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/guardar")
     public ResponseEntity<Especie> createEspecie(@RequestBody Especie especie) {
         Especie createdEspecie = especieService.createEspecie(especie);
         return new ResponseEntity<>(createdEspecie, HttpStatus.CREATED);

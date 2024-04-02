@@ -22,12 +22,10 @@ public class Cita {
 
     @ManyToOne
     @JoinColumn(name = "idmascota")
-    @JsonIgnore
     private Mascota mascota;
 
     @ManyToOne
     @JoinColumn(name = "idmedico")
-    @JsonIgnore
     private Medico medico;
 
     @ManyToOne

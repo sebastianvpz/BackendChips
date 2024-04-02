@@ -61,7 +61,7 @@ public class UsuarioController {
         usuario.setPassword(passwordEncoder.encode(password));
         usuario.setRol(rol);
         usuarioService.createUsuario(usuario);
-            return ResponseEntity.ok().body("{\"message\": \"Mascota guardada exitosamente\"}");
+            return ResponseEntity.ok().body("{\"message\": \"Usuario guardado exitosamente\"}");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al procesar la solicitud: " + e.getMessage());
         }

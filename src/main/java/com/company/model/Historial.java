@@ -21,11 +21,9 @@ public class Historial {
 
     @ManyToOne
     @JoinColumn(name = "idcita")
-    @JsonIgnore
     private Cita cita;
 
     private String diagnostico;
 
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
 }

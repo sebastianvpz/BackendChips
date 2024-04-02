@@ -36,7 +36,7 @@ public class CitaController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/listar/{idUsuario}")
+    @GetMapping("/listar/usuario/{idUsuario}")
     public ResponseEntity<List<Cita>> getCitasByUsuarioId(@PathVariable("idUsuario") Long idUsuario) {
         Optional<Usuario> usuarioOptional = usuarioService.getUsuarioById(idUsuario);
         if (usuarioOptional.isPresent()) {
@@ -47,7 +47,7 @@ public class CitaController {
         }
     }
 
-    @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/guardar")
     public ResponseEntity<Cita> createCita(@RequestBody Cita cita) {
         Cita createdCita = citaService.createCita(cita);
         return new ResponseEntity<>(createdCita, HttpStatus.CREATED);

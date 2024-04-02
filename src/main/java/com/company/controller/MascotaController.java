@@ -41,7 +41,7 @@ public class MascotaController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/listar/{idUsuario}")
+    @GetMapping("/listar/usuario/{idUsuario}")
     public ResponseEntity<List<Mascota>> getMascotasByUsuarioId(@PathVariable("idUsuario") Long idUsuario) {
         Optional<Usuario> usuarioOptional = usuarioService.getUsuarioById(idUsuario);
         if (usuarioOptional.isPresent()) {
