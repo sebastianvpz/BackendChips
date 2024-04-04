@@ -32,11 +32,10 @@ public class JwtService {
         return Jwts
                 .builder()
                 .claims(extraClaims)
-                .claim("userId",usuario.getIdusuario())
+                .claim("idusuario",usuario.getIdusuario())
                 .claim("email",usuario.getEmail())
                 .claim("nombre",usuario.getNombre())
                 .claim("apellido",usuario.getApellido())
-                .claim("password",usuario.getPassword())
                 .subject(usuario.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+ 1000*60*24))

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,14 +36,19 @@ public class MedicoController {
     @PostMapping(value = "/guardar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createMedico(@RequestParam("img") String imgString64,
                                                @RequestParam("nombre") String nombre,
-                                               @RequestParam("horario") String horario,
-                                               @RequestParam("fechaNacimiento") String fechaNacimiento) {
+                                               @RequestParam("diaInicio") String diaInicio,
+                                               @RequestParam("diaFin") String diaFin,
+                                               @RequestParam("horaInicio") String horaInicio,
+                                               @RequestParam("horaFin") String horaFin)
+                                                {
         try{
         Medico medico = new Medico();
         medico.setImg(imgString64);
         medico.setNombre(nombre);
-        medico.setHorario(horario);
-        medico.setFecha_nacimiento(fechaNacimiento);
+        medico.setDiaInicio(diaInicio);
+        medico.setDiaFin(diaFin);
+        medico.setHoraInicio(horaInicio);
+        medico.setHoraFin(horaFin);
         medicoService.createMedico(medico);
             return ResponseEntity.ok().body("{\"message\": \"Propuesta guardada exitosamente\"}");
         } catch (Exception e) {
@@ -53,14 +60,18 @@ public class MedicoController {
     public ResponseEntity<?> updateMedico(@PathVariable Long id,
                                                @RequestParam("img") String imgString64,
                                                @RequestParam("nombre") String nombre,
-                                               @RequestParam("horario") String horario,
-                                               @RequestParam("fechaNacimiento") String fechaNacimiento) {
+                                                @RequestParam("diaInicio") String diaInicio,
+                                                @RequestParam("diaFin") String diaFin,
+                                                @RequestParam("horaInicio") String horaInicio,
+                                                @RequestParam("horaFin") String horaFin) {
         try{
         Medico medicoExistente = medicoService.getMedicoById(id).orElseThrow();
         medicoExistente.setImg(imgString64);
         medicoExistente.setNombre(nombre);
-        medicoExistente.setHorario(horario);
-        medicoExistente.setFecha_nacimiento(fechaNacimiento);
+        medicoExistente.setDiaInicio(diaInicio);
+        medicoExistente.setDiaFin(diaFin);
+        medicoExistente.setHoraInicio(horaInicio);
+        medicoExistente.setHoraFin(horaFin);
         medicoService.createMedico(medicoExistente);
 
             return ResponseEntity.ok().body("{\"message\": \"Médico editado exitosamente\"}");

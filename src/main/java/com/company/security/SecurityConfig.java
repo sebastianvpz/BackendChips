@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .requestMatchers("/usuarios/guardar").permitAll()
                                 .anyRequest().authenticated()
                 )
